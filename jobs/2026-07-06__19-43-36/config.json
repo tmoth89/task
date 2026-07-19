@@ -1,0 +1,13 @@
+{
+    "quiet": true,
+    "agents": [
+        {
+            "name": "nop"
+        }
+    ],
+    "tasks": [
+        {
+            "path": "/Users/timmyjohnson/Downloads/log-report"
+        }
+    ]
+}

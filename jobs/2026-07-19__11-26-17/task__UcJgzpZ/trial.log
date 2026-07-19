@@ -1,0 +1,23 @@
+Skipping image OS validation for hb__0deeb54e43e5727e9cfbd05f411ba975: docker inspect returned 1
+Collecting main service artifacts
+Failed to download artifact '/app/report.json' from service 'main' (best-effort)
+Traceback (most recent call last):
+  File "/Users/timmyjohnson/.local/share/uv/tools/harbor/lib/python3.14/site-packages/harbor/trial/artifact_handler.py", line 330, in _download_artifact
+    await source_env.service_download_file(
+    ...<3 lines>...
+    )
+  File "/Users/timmyjohnson/.local/share/uv/tools/harbor/lib/python3.14/site-packages/harbor/environments/docker/docker.py", line 1019, in service_download_file
+    await self.download_file(source_path, target_path)
+  File "/Users/timmyjohnson/.local/share/uv/tools/harbor/lib/python3.14/site-packages/harbor/environments/docker/docker.py", line 1004, in download_file
+    await self._platform.download_file(source_path, target_path)
+  File "/Users/timmyjohnson/.local/share/uv/tools/harbor/lib/python3.14/site-packages/harbor/environments/docker/docker_unix.py", line 186, in download_file
+    await self._env._run_docker_compose_command(
+    ...<2 lines>...
+    )
+  File "/Users/timmyjohnson/.local/share/uv/tools/harbor/lib/python3.14/site-packages/harbor/environments/docker/docker.py", line 625, in _run_docker_compose_command
+    raise RuntimeError(
+    ...<5 lines>...
+    )
+RuntimeError: Docker compose command failed for environment log-report. Command: docker compose --project-name task__ucjgzpz__env --project-directory /Users/timmyjohnson/Downloads/task/environment -f /private/var/folders/wv/1z3x70n50zs071zpnc__2kch0000gn/T/tmpd1450sdh/task__UcJgzpZ__env-docker-compose-resources.json -f /Users/timmyjohnson/.local/share/uv/tools/harbor/lib/python3.14/site-packages/harbor/environments/docker/docker-compose-build.yaml -f /private/var/folders/wv/1z3x70n50zs071zpnc__2kch0000gn/T/tmp0i7tdr83/docker-compose-mounts.json cp main:/app/report.json jobs/2026-07-19__11-26-17/task__UcJgzpZ/artifacts/app/report.json. Return code: 1. Stdout:  task__ucjgzpz__env-main-1 Copying task__ucjgzpz__env-main-1:/app/report.json to jobs/2026-07-19__11-26-17/task__UcJgzpZ/artifacts/app/report.json
+Error response from daemon: Could not find the file /app/report.json in container c1656e95eeaa3822adf08d192a69d214ba057460042088786c253a5912a4d40e
+. Stderr: None. 

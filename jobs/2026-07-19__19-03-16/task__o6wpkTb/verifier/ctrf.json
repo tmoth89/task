@@ -1,0 +1,41 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 2,
+            "passed": 1,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1784512999.858462,
+            "stop": 1784512999.8688045
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::test_report_exists",
+                "status": "passed",
+                "duration": 0.0002977499825647101,
+                "start": 1784512999.8647776,
+                "stop": 1784512999.8651946,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_report_matches_access_log",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00043620800715871155,
+                "start": 1784512999.8652713,
+                "stop": 1784512999.8686929,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_report_matches_access_log():\n        \"\"\"\n        Verifies instruction criterion:\n        \"Analyze the access log and summarize request count,\n        clients involved, and popular pages.\"\n        \"\"\"\n    \n        with LOG_PATH.open() as f:\n            lines = [\n                line.strip()\n                for line in f\n                if line.strip()\n            ]\n    \n        expected_total = len(lines)\n    \n        expected_ips = set()\n        paths = Counter()\n    \n        for line in lines:\n            expected_ips.add(line.split()[0])\n    \n            match = re.search(\n                r'\"(?:GET|POST|PUT|DELETE|HEAD|PATCH) (\\S+) ',\n                line,\n            )\n    \n            if match:\n                paths[match.group(1)] += 1\n    \n        expected_unique_ips = len(expected_ips)\n        expected_top_path = paths.most_common(1)[0][0]\n    \n        with REPORT_PATH.open() as f:\n            report = json.load(f)\n    \n>       assert report[\"total_requests\"] == expected_total\nE       assert 999 == 6\n\n/tests/test_outputs.py:55: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

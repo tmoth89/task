@@ -1,0 +1,32 @@
+{
+    "schema_version": 1,
+    "task": {
+        "name": "task",
+        "type": "local",
+        "digest": "sha256:e1f47c9c3ef2221189013b004757f3dbcbb70de571cd7b6383c9157c123f569a",
+        "path": "."
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent": {
+        "name": "nop",
+        "skills": [],
+        "extra_allowed_hosts": [],
+        "kwargs": {},
+        "mcp_servers": []
+    },
+    "skills": [],
+    "environment": {
+        "type": "docker",
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "disable": false
+    }
+}

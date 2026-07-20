@@ -1,0 +1,52 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 3 items
+
+../tests/test_outputs.py .FF                                             [100%]
+
+=================================== FAILURES ===================================
+________________ test_report_is_valid_json_with_required_fields ________________
+
+    def test_report_is_valid_json_with_required_fields():
+        """
+        Verifies instruction criterion:
+        "/app/report.json must be a valid JSON object containing:
+        total_requests, unique_clients, and top_path."
+        """
+        with REPORT_PATH.open() as f:
+            report = json.load(f)
+    
+        assert isinstance(report, dict), "Report must be a JSON object"
+    
+        assert "total_requests" in report
+>       assert "unique_clients" in report
+E       AssertionError: assert 'unique_clients' in {'top_path': '/index.html', 'total_requests': 6, 'unique_ips': 3}
+
+/tests/test_outputs.py:28: AssertionError
+__________________________ test_report_field_formats ___________________________
+
+    def test_report_field_formats():
+        """
+        Verifies instruction criterion:
+        "The report fields must use the required formats:
+        total_requests is an integer,
+        unique_clients is an array of strings,
+        top_path is a string."
+        """
+        with REPORT_PATH.open() as f:
+            report = json.load(f)
+    
+        assert isinstance(report["total_requests"], int)
+>       assert isinstance(report["unique_clients"], list)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'unique_clients'
+
+/tests/test_outputs.py:44: KeyError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_outputs.py::test_report_file_exists
+FAILED ../tests/test_outputs.py::test_report_is_valid_json_with_required_fields
+FAILED ../tests/test_outputs.py::test_report_field_formats - KeyError: 'uniqu...
+========================= 2 failed, 1 passed in 0.02s ==========================
